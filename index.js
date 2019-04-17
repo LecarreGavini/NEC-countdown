@@ -30,6 +30,7 @@ const LAST_DATE = {
         countdown.hours = 24 - today.getHours()
         countdown.minutes = 60 - today.getMinutes()
         countdown.seconds = 60 - today.getSeconds()
+        render()
     }
 
     function getDaysInMonth(month) {
@@ -38,21 +39,21 @@ const LAST_DATE = {
 
     function update() {
         setInterval(function () {
-            render()
             countdown.seconds--
             checkForUnitIncrements()
+            render()
         }, 1000)
     }
 
 
     function checkForUnitIncrements() {
-        if (countdown.seconds == 0) {
+        if (countdown.seconds < 0) {
             resetSecondDecrementMinute()
-            if (countdown.minutes == 0) {
+            if (countdown.minutes < 0) {
                 resetMinuteDecrementHour()
-                if (countdown.hours == 0) {
+                if (countdown.hours < 0) {
                     resetHourDecrementDay()
-                    if (countdown.days == 0) {
+                    if (countdown.days < 0) {
                         resetDayDecrementMonth()
                         if (countdown.months < 0) {
                             resetMonthDecrementYear()
@@ -65,17 +66,17 @@ const LAST_DATE = {
 
     function resetSecondDecrementMinute() {
         countdown.minutes--
-        countdown.seconds = 60
+        countdown.seconds = 59
     }
 
     function resetMinuteDecrementHour() {
         countdown.hours--
-        countdown.minutes = 60
+        countdown.minutes = 59
     }
 
     function resetHourDecrementDay() {
         countdown.days--
-        countdown.hours = 24
+        countdown.hours = 23
     }
 
     function resetDayDecrementMonth() {
@@ -85,7 +86,7 @@ const LAST_DATE = {
 
     function resetMonthDecrementYear() {
         countdown.year--
-        countdown.months = 12
+        countdown.months = 11
     }
 
     function render() {

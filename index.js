@@ -6,6 +6,13 @@ const DAYS = "span_days"
 const HOURS = "span_hours"
 const MINUTES = "span_minutes"
 const SECONDS = "span_seconds"
+
+const MILLISECONDS_IN_A_SECOND = 1000;
+const SECONDS_IN_A_MINUTE = 60;
+const MINUTES_IN_A_HOUR = 60;
+const HOURS_IN_A_DAY = 24;
+const MONTHS_IN_A_YEAR = 12;
+
 const LAST_DATE = {
     year: 2019,
     month: 5,
@@ -27,9 +34,9 @@ const LAST_DATE = {
         countdown.years = LAST_DATE.year - today.getFullYear()
         countdown.months = LAST_DATE.month - today.getMonth()
         countdown.days = (getDaysInMonth(today.getMonth())) - today.getDate();
-        countdown.hours = 24 - today.getHours()
-        countdown.minutes = 60 - today.getMinutes()
-        countdown.seconds = 60 - today.getSeconds()
+        countdown.hours = HOURS_IN_A_DAY - today.getHours()
+        countdown.minutes = MINUTES_IN_A_HOUR - today.getMinutes()
+        countdown.seconds = SECONDS_IN_A_MINUTE - today.getSeconds()
         render()
     }
 
@@ -42,7 +49,7 @@ const LAST_DATE = {
             countdown.seconds--
             checkForUnitIncrements()
             render()
-        }, 1000)
+        }, MILLISECONDS_IN_A_SECOND)
     }
 
 
@@ -66,17 +73,17 @@ const LAST_DATE = {
 
     function resetSecondDecrementMinute() {
         countdown.minutes--
-        countdown.seconds = 59
+        countdown.seconds = SECONDS_IN_A_MINUTE - 1
     }
 
     function resetMinuteDecrementHour() {
         countdown.hours--
-        countdown.minutes = 59
+        countdown.minutes = MINUTES_IN_A_HOUR - 1
     }
 
     function resetHourDecrementDay() {
         countdown.days--
-        countdown.hours = 23
+        countdown.hours = HOURS_IN_A_DAY - 1
     }
 
     function resetDayDecrementMonth() {
@@ -86,7 +93,7 @@ const LAST_DATE = {
 
     function resetMonthDecrementYear() {
         countdown.year--
-        countdown.months = 11
+        countdown.months = MONTHS_IN_A_YEAR - 1
     }
 
     function render() {

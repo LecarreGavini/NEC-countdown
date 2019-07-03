@@ -15,8 +15,9 @@ const MONTHS_IN_A_YEAR = 12;
 
 const LAST_DATE = {
     year: 2019,
-    month: 5,
-    day: 29
+    month: 9,
+    day: 30,
+    hours: 19,
 };
 
 (function () {
